@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Superhero = mongoose.model('superheros');
 
-
+//basic get request for index page
 router.get('/superheros', function(req, res) {
   Superhero.find(function(err, superheros){
     console.log(superheros);
@@ -36,6 +36,7 @@ router.post('/superheros', function(req, res){
   });
 });
 
+//finds superhero with particular ID send in through the browser and the updates with built in mongo commands
 router.put('/superhero/:id', function(req, res){
   var query = {'_id':req.params.id};
   var update = {name: req.body.name};
