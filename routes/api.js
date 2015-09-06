@@ -14,6 +14,8 @@ router.get('/superheros', function(req, res) {
   });
 });
 
+
+//finds superhero with id and renders main page with this superhero details on it
 router.get('/superhero/:id', function(req, res){
   var query = {'_id': req.params.id};
   Superhero.findOne(query, function(err, superhero){
@@ -25,6 +27,7 @@ router.get('/superhero/:id', function(req, res){
   });
 });
 
+//adds superhero to database using superhero schema from database.js
 router.post('/superheros', function(req, res){
   new Superhero({name: req.body.name})
   .save(function(err, superhero){
@@ -48,6 +51,8 @@ router.put('/superhero/:id', function(req, res){
   });
 });
 
+
+//finds superhero in database and then uses commands built into mongo to delete that superhero from the database
 router.delete('/superhero/:id', function(req, res){
   var query = {'_id': req.params.id};
   Superhero.findOneAndRemove(query, function(err, superhero){
